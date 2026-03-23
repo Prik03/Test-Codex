@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { CommonModule, CurrencyPipe, DatePipe, PercentPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
@@ -18,7 +18,7 @@ type TagSeverity = 'success' | 'info' | 'warn' | 'danger';
 @Component({
   selector: 'app-investments',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, PercentPipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule, IconFieldModule, InputIconModule],
+  imports: [CommonModule, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule, IconFieldModule, InputIconModule],
   templateUrl: './investments.component.html'
 })
 export class InvestmentsComponent {

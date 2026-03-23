@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 
 @Component({
   selector: 'app-reports',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, PercentPipe, CardModule, ChartModule],
+  imports: [CommonModule, CardModule, ChartModule],
   templateUrl: './reports.component.html'
 })
 export class ReportsComponent {
