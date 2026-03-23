@@ -10,8 +10,8 @@
     <p-card header="Mock Upload" styleClass="section-card">
       <form [formGroup]="documentForm" class="form-grid">
         <div class="field-group"><label>Document Name</label><input pInputText formControlName="name" /></div>
-        <div class="field-group"><label>Category</label><p-dropdown [options]="categories" formControlName="category"></p-dropdown></div>
-        <div class="field-group"><label>Client</label><p-dropdown [options]="clientOptions()" formControlName="clientId" optionLabel="label" optionValue="value"></p-dropdown></div>
+        <div class="field-group"><label>Category</label><p-select [options]="categories" formControlName="category"></p-select></div>
+        <div class="field-group"><label>Client</label><p-select [options]="clientOptions()" formControlName="clientId" optionLabel="label" optionValue="value"></p-select></div>
         <div class="field-group"><label>Owner</label><input pInputText formControlName="owner" /></div>
       </form>
       <p-fileUpload mode="basic" chooseLabel="Choose File" [customUpload]="true" [auto]="false"></p-fileUpload>
