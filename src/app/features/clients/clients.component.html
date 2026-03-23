@@ -1,0 +1,90 @@
+<div class="page-shell">
+  <div class="page-header">
+    <div class="page-title">
+      <h1>Client Management</h1>
+      <p>Centralize relationship data, AUM, onboarding details, and client-specific notes.</p>
+    </div>
+    <div class="toolbar-actions">
+      <p-card styleClass="section-card">
+        <div class="metric-label">Active Clients</div>
+        <div class="metric-value">{{ activeClients() }}</div>
+      </p-card>
+      <button pButton type="button" label="Add Client" icon="pi pi-plus" (click)="openCreateDialog()"></button>
+    </div>
+  </div>
+
+  <p-card styleClass="section-card">
+    <p-table #dt [value]="clients()" [paginator]="true" [rows]="5" [globalFilterFields]="['name', 'company', 'region', 'segment']" [sortMode]="'multiple'">
+      <ng-template pTemplate="caption">
+        <div class="toolbar-actions">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText #filterInput type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search clients" />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th pSortableColumn="name">Client <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="region">Region <p-sortIcon field="region"></p-sortIcon></th>
+          <th pSortableColumn="segment">Segment <p-sortIcon field="segment"></p-sortIcon></th>
+          <th pSortableColumn="aum">AUM <p-sortIcon field="aum"></p-sortIcon></th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-client>
+        <tr>
+          <td>{{ client.name }}</td>
+          <td>{{ client.region }}</td>
+          <td>{{ client.segment }}</td>
+          <td>{{ client.aum | currency:'USD':'symbol':'1.0-0' }}</td>
+          <td><p-tag [value]="client.status" [severity]="client.status === 'Active' ? 'success' : client.status === 'Review' ? 'warning' : 'danger'"></p-tag></td>
+          <td>
+            <div class="toolbar-actions">
+              <button pButton type="button" icon="pi pi-eye" class="p-button-text" (click)="viewProfile(client)"></button>
+              <button pButton type="button" icon="pi pi-pencil" class="p-button-text" (click)="openEditDialog(client)"></button>
+              <button pButton type="button" icon="pi pi-trash" class="p-button-text p-button-danger" (click)="deleteClient(client.id)"></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <p-dialog [visible]="dialogVisible()" [modal]="true" [style]="{ width: '52rem' }" [draggable]="false" [closable]="true" (onHide)="dialogVisible.set(false)" [header]="editingClientId() ? 'Edit Client' : 'Add Client'">
+    <form [formGroup]="clientForm" class="form-grid">
+      <div class="field-group"><label>Name</label><input pInputText formControlName="name" /></div>
+      <div class="field-group"><label>Company</label><input pInputText formControlName="company" /></div>
+      <div class="field-group"><label>Email</label><input pInputText formControlName="email" /></div>
+      <div class="field-group"><label>Phone</label><input pInputText formControlName="phone" /></div>
+      <div class="field-group"><label>Status</label><p-dropdown [options]="statuses" formControlName="status"></p-dropdown></div>
+      <div class="field-group"><label>AUM</label><input pInputText type="number" formControlName="aum" /></div>
+      <div class="field-group"><label>Region</label><p-dropdown [options]="regions" formControlName="region"></p-dropdown></div>
+      <div class="field-group"><label>Segment</label><p-dropdown [options]="segments" formControlName="segment"></p-dropdown></div>
+      <div class="field-group"><label>Onboarding Date</label><input pInputText type="date" formControlName="onboardingDate" /></div>
+      <div class="field-group"><label>Relationship Manager</label><input pInputText formControlName="relationshipManager" /></div>
+      <div class="field-group" style="grid-column:1 / -1;"><label>Notes</label><textarea pInputTextarea rows="4" formControlName="notes"></textarea></div>
+    </form>
+    <ng-template pTemplate="footer">
+      <button pButton type="button" label="Cancel" class="p-button-text" (click)="dialogVisible.set(false)"></button>
+      <button pButton type="button" label="Save Client" (click)="saveClient()"></button>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog [visible]="profileVisible()" [modal]="true" [style]="{ width: '36rem' }" [draggable]="false" header="Client Profile" (onHide)="profileVisible.set(false)">
+    @if (selectedClient(); as client) {
+      <div class="form-grid">
+        <div><strong>Name:</strong> {{ client.name }}</div>
+        <div><strong>Manager:</strong> {{ client.relationshipManager }}</div>
+        <div><strong>Company:</strong> {{ client.company }}</div>
+        <div><strong>Segment:</strong> {{ client.segment }}</div>
+        <div><strong>Email:</strong> {{ client.email }}</div>
+        <div><strong>Phone:</strong> {{ client.phone }}</div>
+        <div><strong>Onboarded:</strong> {{ client.onboardingDate | date }}</div>
+        <div><strong>AUM:</strong> {{ client.aum | currency:'USD':'symbol':'1.0-0' }}</div>
+        <div style="grid-column:1 / -1;"><strong>Notes:</strong> {{ client.notes }}</div>
+      </div>
+    }
+  </p-dialog>
+</div>

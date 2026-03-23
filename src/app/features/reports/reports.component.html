@@ -1,0 +1,18 @@
+<div class="page-shell">
+  <div class="page-header">
+    <div class="page-title">
+      <h1>Reports & Analytics</h1>
+      <p>Visualize portfolio movements, regional exposure, and executive reporting trends.</p>
+    </div>
+  </div>
+
+  <div class="responsive-two-column">
+    <p-card header="Performance Trend" styleClass="section-card">
+      <p-chart type="line" [data]="revenueData"></p-chart>
+    </p-card>
+
+    <p-card header="Regional Exposure" styleClass="section-card">
+      <p-chart type="bar" [data]="exposureData"></p-chart>
+    </p-card>
+  </div>
+</div>

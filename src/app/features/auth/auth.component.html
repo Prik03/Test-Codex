@@ -1,0 +1,36 @@
+<div class="auth-page">
+  <p-card styleClass="auth-card section-card">
+    <ng-template pTemplate="header">
+      <div class="auth-header">
+        <span class="eyebrow">Financial Management Platform</span>
+        <h1>Welcome back</h1>
+        <p>Access client oversight, investment tracking, reporting, and secure document workflows.</p>
+      </div>
+    </ng-template>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="auth-form">
+      <div class="field-group">
+        <label for="email">Work Email</label>
+        <input id="email" type="email" pInputText formControlName="email" />
+        @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+          <span class="field-error">Enter a valid email address.</span>
+        }
+      </div>
+
+      <div class="field-group">
+        <label for="password">Password</label>
+        <p-password inputId="password" formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+        @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+          <span class="field-error">Password must be at least 8 characters.</span>
+        }
+      </div>
+
+      <div class="remember-row">
+        <p-checkbox inputId="rememberMe" formControlName="rememberMe" [binary]="true"></p-checkbox>
+        <label for="rememberMe">Remember this device</label>
+      </div>
+
+      <button pButton type="submit" label="Login" icon="pi pi-arrow-right"></button>
+    </form>
+  </p-card>
+</div>
