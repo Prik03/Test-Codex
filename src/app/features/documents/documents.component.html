@@ -7,7 +7,7 @@
   </div>
 
   <div class="responsive-two-column">
-    <p-card header="Mock Upload" styleClass="section-card">
+    <p-card header="Mock Upload" class="section-card">
       <form [formGroup]="documentForm" class="form-grid">
         <div class="field-group"><label>Document Name</label><input pInputText formControlName="name" /></div>
         <div class="field-group"><label>Category</label><p-select [options]="categories" formControlName="category"></p-select></div>
@@ -20,7 +20,7 @@
       </div>
     </p-card>
 
-    <p-card header="Governance Notes" styleClass="section-card">
+    <p-card header="Governance Notes" class="section-card">
       <ul>
         <li>Store quarterly review packs by client and category.</li>
         <li>Use the owner field to model operational accountability.</li>
@@ -29,7 +29,7 @@
     </p-card>
   </div>
 
-  <p-card header="Document Register" styleClass="section-card" style="margin-top:1rem;display:block;">
+  <p-card header="Document Register" class="section-card" style="margin-top:1rem;display:block;">
     <p-table [value]="documents()" [paginator]="true" [rows]="6">
       <ng-template pTemplate="header">
         <tr>

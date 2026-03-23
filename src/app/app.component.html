@@ -21,7 +21,7 @@
       </nav>
     </aside>
 
-    <p-sidebar [visible]="mobileNavOpen()" (visibleChange)="mobileNavOpen.set($event)" position="left" styleClass="mobile-sidebar">
+    <p-drawer [visible]="mobileNavOpen()" (visibleChange)="mobileNavOpen.set($event)" position="left" class="mobile-sidebar">
       <div class="nav-links mobile">
         @for (item of menuItems(); track item.route) {
           <a [routerLink]="item.route" routerLinkActive="active-link" (click)="mobileNavOpen.set(false)">
@@ -30,14 +30,14 @@
           </a>
         }
       </div>
-    </p-sidebar>
+    </p-drawer>
   }
 
   <main class="main-content" [class.full-width]="!isAuthenticated()">
     @if (isAuthenticated()) {
-      <p-menubar [model]="[]" styleClass="topbar">
+      <p-menubar [model]="[]" class="topbar">
         <ng-template pTemplate="start">
-          <button pButton type="button" icon="pi pi-bars" class="p-button-text mobile-menu-btn" (click)="mobileNavOpen.set(true)"></button>
+          <button pButton type="button" icon="pi pi-bars" [text]="true" class="mobile-menu-btn" (click)="mobileNavOpen.set(true)"></button>
           <div class="welcome-copy">
             <h3>Financial Management Workspace</h3>
             <span>Unified oversight across clients, investments, documents, and reporting.</span>
@@ -50,7 +50,7 @@
               <strong>{{ currentUser() }}</strong>
               <div class="subtle">Portfolio oversight lead</div>
             </div>
-            <button pButton type="button" label="Logout" icon="pi pi-sign-out" class="p-button-outlined" (click)="logout()"></button>
+            <button pButton type="button" label="Logout" icon="pi pi-sign-out" [outlined]="true" (click)="logout()"></button>
           </div>
         </ng-template>
       </p-menubar>

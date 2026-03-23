@@ -8,13 +8,17 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 import { MockDataService } from '../../core/services/mock-data.service';
 import { Investment } from '../../core/models/client.model';
+
+type TagSeverity = 'success' | 'info' | 'warn' | 'danger';
 
 @Component({
   selector: 'app-investments',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, PercentPipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule],
+  imports: [CommonModule, CurrencyPipe, DatePipe, PercentPipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule, IconFieldModule, InputIconModule],
   templateUrl: './investments.component.html'
 })
 export class InvestmentsComponent {
@@ -75,5 +79,16 @@ export class InvestmentsComponent {
 
   clientName(clientId: number): string {
     return this.clients().find((client) => client.id === clientId)?.name ?? 'Unknown client';
+  }
+
+  riskSeverity(riskLevel: string): TagSeverity {
+    switch (riskLevel) {
+      case 'Low':
+        return 'success';
+      case 'Medium':
+        return 'warn';
+      default:
+        return 'danger';
+    }
   }
 }

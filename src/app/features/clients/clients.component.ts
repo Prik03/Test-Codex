@@ -9,13 +9,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { TextareaModule } from 'primeng/textarea';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 import { MockDataService } from '../../core/services/mock-data.service';
 import { Client } from '../../core/models/client.model';
+
+type TagSeverity = 'success' | 'info' | 'warn' | 'danger';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule, TextareaModule],
+  imports: [CommonModule, CurrencyPipe, DatePipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule, TextareaModule, IconFieldModule, InputIconModule],
   templateUrl: './clients.component.html'
 })
 export class ClientsComponent {
@@ -87,5 +91,16 @@ export class ClientsComponent {
   viewProfile(client: Client): void {
     this.selectedClient.set(client);
     this.profileVisible.set(true);
+  }
+
+  clientStatusSeverity(status: string): TagSeverity {
+    switch (status) {
+      case 'Active':
+        return 'success';
+      case 'Review':
+        return 'warn';
+      default:
+        return 'danger';
+    }
   }
 }
