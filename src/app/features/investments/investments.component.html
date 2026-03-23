@@ -5,7 +5,7 @@
       <p>Track holdings, monitor risk, and review performance by client portfolio.</p>
     </div>
     <div class="toolbar-actions">
-      <p-card styleClass="section-card">
+      <p-card class="section-card">
         <div class="metric-label">Total Investment Value</div>
         <div class="metric-value">{{ totalInvestmentValue() | currency:'USD':'symbol':'1.0-0' }}</div>
       </p-card>
@@ -13,13 +13,13 @@
     </div>
   </div>
 
-  <p-card styleClass="section-card">
+  <p-card class="section-card">
     <p-table #investmentTable [value]="investments()" [paginator]="true" [rows]="6" [rowsPerPageOptions]="[6, 12, 18]" [globalFilterFields]="['name', 'type']">
       <ng-template pTemplate="caption">
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
+        <p-iconfield>
+          <p-inputicon class="pi pi-search"></p-inputicon>
           <input pInputText type="text" (input)="investmentTable.filterGlobal($any($event.target).value, 'contains')" placeholder="Search investments" />
-        </span>
+        </p-iconfield>
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
@@ -39,11 +39,11 @@
           <td>{{ investment.type }}</td>
           <td>{{ investment.amount | currency:'USD':'symbol':'1.0-0' }}</td>
           <td>{{ investment.performance / 100 | percent:'1.1-1' }}</td>
-          <td><p-tag [value]="investment.riskLevel" [severity]="investment.riskLevel === 'Low' ? 'success' : investment.riskLevel === 'Medium' ? 'warning' : 'danger'"></p-tag></td>
+          <td><p-tag [value]="investment.riskLevel" [severity]="riskSeverity(investment.riskLevel)"></p-tag></td>
           <td>
             <div class="toolbar-actions">
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-text" (click)="openDialog(investment)"></button>
-              <button pButton type="button" icon="pi pi-trash" class="p-button-text p-button-danger" (click)="deleteInvestment(investment.id)"></button>
+              <button pButton type="button" icon="pi pi-pencil" [text]="true" (click)="openDialog(investment)"></button>
+              <button pButton type="button" icon="pi pi-trash" [text]="true" severity="danger" (click)="deleteInvestment(investment.id)"></button>
             </div>
           </td>
         </tr>
@@ -62,7 +62,7 @@
       <div class="field-group"><label>Inception Date</label><input pInputText type="date" formControlName="inceptionDate" /></div>
     </form>
     <ng-template pTemplate="footer">
-      <button pButton type="button" label="Cancel" class="p-button-text" (click)="dialogVisible.set(false)"></button>
+      <button pButton type="button" label="Cancel" [text]="true" (click)="dialogVisible.set(false)"></button>
       <button pButton type="button" label="Save Investment" (click)="save()"></button>
     </ng-template>
   </p-dialog>

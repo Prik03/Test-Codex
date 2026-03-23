@@ -7,6 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { MockDataService } from '../../core/services/mock-data.service';
 
+type TagSeverity = 'success' | 'info' | 'warn' | 'danger';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -29,4 +31,15 @@ export class DashboardComponent {
     labels: ['Equity', 'Fixed Income', 'Alternatives', 'Infrastructure'],
     datasets: [{ data: [42, 24, 19, 15], backgroundColor: ['#0f766e', '#2563eb', '#7c3aed', '#f59e0b'] }]
   };
+
+  clientStatusSeverity(status: string): TagSeverity {
+    switch (status) {
+      case 'Active':
+        return 'success';
+      case 'Review':
+        return 'warn';
+      default:
+        return 'danger';
+    }
+  }
 }

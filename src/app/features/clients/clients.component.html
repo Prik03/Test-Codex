@@ -5,7 +5,7 @@
       <p>Centralize relationship data, AUM, onboarding details, and client-specific notes.</p>
     </div>
     <div class="toolbar-actions">
-      <p-card styleClass="section-card">
+      <p-card class="section-card">
         <div class="metric-label">Active Clients</div>
         <div class="metric-value">{{ activeClients() }}</div>
       </p-card>
@@ -13,17 +13,17 @@
     </div>
   </div>
 
-  <p-card styleClass="section-card">
-    <p-table #dt [value]="clients()" [paginator]="true" [rows]="5" [globalFilterFields]="['name', 'company', 'region', 'segment']" [sortMode]="'multiple'">
+  <p-card class="section-card">
+    <p-table #dt [value]="clients()" [paginator]="true" [rows]="5" [globalFilterFields]="['name', 'company', 'region', 'segment']" sortMode="multiple">
       <ng-template pTemplate="caption">
         <div class="toolbar-actions">
-          <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
+          <p-iconfield>
+            <p-inputicon class="pi pi-search"></p-inputicon>
             <input pInputText #filterInput type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search clients" />
-          </span>
+          </p-iconfield>
         </div>
       </ng-template>
-      <ng-template pTemplate="header" let-columns>
+      <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="name">Client <p-sortIcon field="name"></p-sortIcon></th>
           <th pSortableColumn="region">Region <p-sortIcon field="region"></p-sortIcon></th>
@@ -39,12 +39,12 @@
           <td>{{ client.region }}</td>
           <td>{{ client.segment }}</td>
           <td>{{ client.aum | currency:'USD':'symbol':'1.0-0' }}</td>
-          <td><p-tag [value]="client.status" [severity]="client.status === 'Active' ? 'success' : client.status === 'Review' ? 'warning' : 'danger'"></p-tag></td>
+          <td><p-tag [value]="client.status" [severity]="clientStatusSeverity(client.status)"></p-tag></td>
           <td>
             <div class="toolbar-actions">
-              <button pButton type="button" icon="pi pi-eye" class="p-button-text" (click)="viewProfile(client)"></button>
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-text" (click)="openEditDialog(client)"></button>
-              <button pButton type="button" icon="pi pi-trash" class="p-button-text p-button-danger" (click)="deleteClient(client.id)"></button>
+              <button pButton type="button" icon="pi pi-eye" [text]="true" (click)="viewProfile(client)"></button>
+              <button pButton type="button" icon="pi pi-pencil" [text]="true" (click)="openEditDialog(client)"></button>
+              <button pButton type="button" icon="pi pi-trash" [text]="true" severity="danger" (click)="deleteClient(client.id)"></button>
             </div>
           </td>
         </tr>
@@ -67,7 +67,7 @@
       <div class="field-group" style="grid-column:1 / -1;"><label>Notes</label><textarea pInputTextarea rows="4" formControlName="notes"></textarea></div>
     </form>
     <ng-template pTemplate="footer">
-      <button pButton type="button" label="Cancel" class="p-button-text" (click)="dialogVisible.set(false)"></button>
+      <button pButton type="button" label="Cancel" [text]="true" (click)="dialogVisible.set(false)"></button>
       <button pButton type="button" label="Save Client" (click)="saveClient()"></button>
     </ng-template>
   </p-dialog>
