@@ -3,7 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { ButtonModule } from 'primeng/button';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
@@ -12,7 +12,7 @@ import { MockDataService } from '../../core/services/mock-data.service';
 @Component({
   selector: 'app-documents',
   standalone: true,
-  imports: [CommonModule, DatePipe, ReactiveFormsModule, CardModule, TableModule, DropdownModule, ButtonModule, FileUploadModule, InputTextModule],
+  imports: [CommonModule, DatePipe, ReactiveFormsModule, CardModule, TableModule, SelectModule, ButtonModule, FileUploadModule, InputTextModule],
   templateUrl: './documents.component.html'
 })
 export class DocumentsComponent {

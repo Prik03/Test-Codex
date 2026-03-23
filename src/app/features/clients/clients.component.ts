@@ -6,7 +6,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { TextareaModule } from 'primeng/textarea';
 import { MockDataService } from '../../core/services/mock-data.service';
@@ -15,7 +15,7 @@ import { Client } from '../../core/models/client.model';
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, DropdownModule, TagModule, TextareaModule],
+  imports: [CommonModule, CurrencyPipe, DatePipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule, TextareaModule],
   templateUrl: './clients.component.html'
 })
 export class ClientsComponent {

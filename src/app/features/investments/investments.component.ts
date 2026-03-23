@@ -6,7 +6,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { MockDataService } from '../../core/services/mock-data.service';
 import { Investment } from '../../core/models/client.model';
@@ -14,7 +14,7 @@ import { Investment } from '../../core/models/client.model';
 @Component({
   selector: 'app-investments',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, PercentPipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, DropdownModule, TagModule],
+  imports: [CommonModule, CurrencyPipe, DatePipe, PercentPipe, ReactiveFormsModule, CardModule, TableModule, DialogModule, ButtonModule, InputTextModule, SelectModule, TagModule],
   templateUrl: './investments.component.html'
 })
 export class InvestmentsComponent {

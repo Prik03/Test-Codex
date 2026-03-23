@@ -58,10 +58,10 @@
       <div class="field-group"><label>Company</label><input pInputText formControlName="company" /></div>
       <div class="field-group"><label>Email</label><input pInputText formControlName="email" /></div>
       <div class="field-group"><label>Phone</label><input pInputText formControlName="phone" /></div>
-      <div class="field-group"><label>Status</label><p-dropdown [options]="statuses" formControlName="status"></p-dropdown></div>
+      <div class="field-group"><label>Status</label><p-select [options]="statuses" formControlName="status"></p-select></div>
       <div class="field-group"><label>AUM</label><input pInputText type="number" formControlName="aum" /></div>
-      <div class="field-group"><label>Region</label><p-dropdown [options]="regions" formControlName="region"></p-dropdown></div>
-      <div class="field-group"><label>Segment</label><p-dropdown [options]="segments" formControlName="segment"></p-dropdown></div>
+      <div class="field-group"><label>Region</label><p-select [options]="regions" formControlName="region"></p-select></div>
+      <div class="field-group"><label>Segment</label><p-select [options]="segments" formControlName="segment"></p-select></div>
       <div class="field-group"><label>Onboarding Date</label><input pInputText type="date" formControlName="onboardingDate" /></div>
       <div class="field-group"><label>Relationship Manager</label><input pInputText formControlName="relationshipManager" /></div>
       <div class="field-group" style="grid-column:1 / -1;"><label>Notes</label><textarea pInputTextarea rows="4" formControlName="notes"></textarea></div>

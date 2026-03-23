@@ -53,11 +53,11 @@
 
   <p-dialog [visible]="dialogVisible()" [modal]="true" [style]="{ width: '48rem' }" [draggable]="false" (onHide)="dialogVisible.set(false)" [header]="editingId() ? 'Edit Investment' : 'Add Investment'">
     <form [formGroup]="investmentForm" class="form-grid">
-      <div class="field-group"><label>Client</label><p-dropdown [options]="clientOptions()" formControlName="clientId" optionLabel="label" optionValue="value"></p-dropdown></div>
+      <div class="field-group"><label>Client</label><p-select [options]="clientOptions()" formControlName="clientId" optionLabel="label" optionValue="value"></p-select></div>
       <div class="field-group"><label>Investment Name</label><input pInputText formControlName="name" /></div>
-      <div class="field-group"><label>Type</label><p-dropdown [options]="typeOptions" formControlName="type"></p-dropdown></div>
+      <div class="field-group"><label>Type</label><p-select [options]="typeOptions" formControlName="type"></p-select></div>
       <div class="field-group"><label>Amount</label><input pInputText type="number" formControlName="amount" /></div>
-      <div class="field-group"><label>Risk Level</label><p-dropdown [options]="riskOptions" formControlName="riskLevel"></p-dropdown></div>
+      <div class="field-group"><label>Risk Level</label><p-select [options]="riskOptions" formControlName="riskLevel"></p-select></div>
       <div class="field-group"><label>Performance %</label><input pInputText type="number" formControlName="performance" /></div>
       <div class="field-group"><label>Inception Date</label><input pInputText type="date" formControlName="inceptionDate" /></div>
     </form>
