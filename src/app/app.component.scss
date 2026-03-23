@@ -1,0 +1,92 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.desktop-sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #0f172a 0%, #102c4a 100%);
+  color: white;
+  padding: 1.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.brand-block h2 {
+  margin: 0.25rem 0;
+}
+
+.brand-label, .subtle {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.nav-links a {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  color: white;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-links a.active-link {
+  background: rgba(20, 184, 166, 0.2);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+
+.main-content {
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+:host ::ng-deep .topbar {
+  margin: 1rem;
+  border-radius: 18px;
+  border: 1px solid var(--border-color);
+}
+
+.topbar-actions, .welcome-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.welcome-copy {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.welcome-copy h3 {
+  margin: 0;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .desktop-sidebar {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .topbar-actions strong {
+    display: none;
+  }
+}

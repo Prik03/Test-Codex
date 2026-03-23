@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+
+<div class="app-shell">
+  @if (isAuthenticated()) {
+    <aside class="desktop-sidebar">
+      <div class="brand-block">
+        <div>
+          <span class="brand-label">Dasseti-style</span>
+          <h2>Finovia Control</h2>
+        </div>
+        <p-tag severity="success" value="Live workspace"></p-tag>
+      </div>
+
+      <nav class="nav-links">
+        @for (item of menuItems(); track item.route) {
+          <a [routerLink]="item.route" routerLinkActive="active-link">
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      </nav>
+    </aside>
+
+    <p-sidebar [visible]="mobileNavOpen()" (visibleChange)="mobileNavOpen.set($event)" position="left" styleClass="mobile-sidebar">
+      <div class="nav-links mobile">
+        @for (item of menuItems(); track item.route) {
+          <a [routerLink]="item.route" routerLinkActive="active-link" (click)="mobileNavOpen.set(false)">
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      </div>
+    </p-sidebar>
+  }
+
+  <main class="main-content" [class.full-width]="!isAuthenticated()">
+    @if (isAuthenticated()) {
+      <p-menubar [model]="[]" styleClass="topbar">
+        <ng-template pTemplate="start">
+          <button pButton type="button" icon="pi pi-bars" class="p-button-text mobile-menu-btn" (click)="mobileNavOpen.set(true)"></button>
+          <div class="welcome-copy">
+            <h3>Financial Management Workspace</h3>
+            <span>Unified oversight across clients, investments, documents, and reporting.</span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="end">
+          <div class="topbar-actions">
+            <p-avatar label="FM" shape="circle"></p-avatar>
+            <div>
+              <strong>{{ currentUser() }}</strong>
+              <div class="subtle">Portfolio oversight lead</div>
+            </div>
+            <button pButton type="button" label="Logout" icon="pi pi-sign-out" class="p-button-outlined" (click)="logout()"></button>
+          </div>
+        </ng-template>
+      </p-menubar>
+    }
+
+    <router-outlet></router-outlet>
+  </main>
+</div>

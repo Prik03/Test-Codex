@@ -1,0 +1,61 @@
+<div class="page-shell">
+  <div class="page-header">
+    <div class="page-title">
+      <h1>Executive Dashboard</h1>
+      <p>Monitor clients, investment allocations, and upcoming reporting priorities from one workspace.</p>
+    </div>
+    <div class="toolbar-actions">
+      <button pButton type="button" label="Generate Snapshot" icon="pi pi-file"></button>
+      <button pButton type="button" label="Schedule Review" icon="pi pi-calendar" class="p-button-outlined"></button>
+    </div>
+  </div>
+
+  <div class="grid-cards">
+    <p-card styleClass="section-card">
+      <div class="metric-label">Total Clients</div>
+      <div class="metric-value">{{ clients().length }}</div>
+    </p-card>
+    <p-card styleClass="section-card">
+      <div class="metric-label">Investments</div>
+      <div class="metric-value">{{ investments().length }}</div>
+    </p-card>
+    <p-card styleClass="section-card">
+      <div class="metric-label">Reports & Documents</div>
+      <div class="metric-value">{{ documents().length }}</div>
+    </p-card>
+    <p-card styleClass="section-card">
+      <div class="metric-label">Total AUM</div>
+      <div class="metric-value">{{ totalAum() | currency:'USD':'symbol':'1.0-0' }}</div>
+    </p-card>
+  </div>
+
+  <div class="responsive-two-column" style="margin-top: 1rem;">
+    <p-card header="Priority Clients" styleClass="section-card">
+      <p-table [value]="clients()" [tableStyle]="{ 'min-width': '40rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Client</th>
+            <th>Region</th>
+            <th>Status</th>
+            <th>AUM</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-client>
+          <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.region }}</td>
+            <td><p-tag [value]="client.status" [severity]="client.status === 'Active' ? 'success' : client.status === 'Review' ? 'warning' : 'danger'"></p-tag></td>
+            <td>{{ client.aum | currency:'USD':'symbol':'1.0-0' }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+
+    <p-card header="Portfolio Allocation" styleClass="section-card">
+      <p-chart type="doughnut" [data]="allocationData"></p-chart>
+      <div style="margin-top:1rem;color:var(--text-muted);">
+        Average investment performance: <strong>{{ averagePerformance() | percent:'1.1-1' }}</strong>
+      </div>
+    </p-card>
+  </div>
+</div>
